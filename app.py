@@ -59,7 +59,7 @@ def read_json(url):
 
 
 def html(content):  # Also allows you to set your own <head></head> etc
-   return '<html><head>custom head stuff here</head><body> <img src="' + content + '></body></html>'
+   return '<html><head>custom head stuff here</head><body> <img src="' + content + '"></body></html>'
 
 @app.route('/apod')
 def apod():
