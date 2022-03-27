@@ -1,5 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
+import random
+import urllib.request
+import urllib.parse
+import json
+
 app = Flask(__name__)
+
+
 
 
 @app.route('/getmsg/', methods=['GET'])
@@ -42,6 +49,26 @@ def post_something():
         })
 
 
+json_url = "https://api.nasa.gov/planetary/apod?api_key=YR5F3thlEB7JDyxl1XVLX0OaXrhIXYDkeUbJ9XSb"
+
+def read_json(url):
+    u = urllib.request.urlopen(url)
+    dane = u.read().decode() 
+       js = json.loads(dane)
+        return js
+   
+@app.route('/apod')
+def apod():
+    r = read_json(json_url) # Zwraca slownik
+    dt = r["date"]
+    expl = r["explanation"]
+    tit = r["title"]
+    ur = r["url"]
+
+    return render_template("apod.html", dt=dt, expl=expl, tit=tit, ur=ur)
+
+
+
 @app.route('/')
 def index():
     # A welcome message to test our server
@@ -51,3 +78,7 @@ def index():
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
     app.run(threaded=True, port=5000)
+
+
+
+
