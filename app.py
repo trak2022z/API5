@@ -56,7 +56,11 @@ def read_json(url):
     dane = u.read().decode() 
     js = json.loads(dane)
     return js
-   
+
+
+def html(content):  # Also allows you to set your own <head></head> etc
+   return '<html><head>custom head stuff here</head><body>' + content + '</body></html>'
+
 @app.route('/apod')
 def apod():
     r = read_json(json_url) # Zwraca slownik
@@ -64,7 +68,8 @@ def apod():
     expl = r["explanation"]
     tit = r["title"]
     ur = r["url"]
-    return "<p>{{ dt }}</p>"
+    return html(dt)
+    #return "<p>{{ dt }}</p>"
     #return render_template("apod.html", dt=dt, expl=expl, tit=tit, ur=ur)
 
 
