@@ -68,7 +68,8 @@ def apod():
     expl = r["explanation"]
     tit = r["title"]
     ur = r["url"]
-    return html(dt)
+    return html('<style> .b {font-weight: bold;} .i {font-style: italic;} </style> <span class="b">Date of APOD:</span>' dt '<p></p> <span class="b">Explanation:</span>' expl '<p></p>'
+)
     #return "<p>{{ dt }}</p>"
     #return render_template("apod.html", dt=dt, expl=expl, tit=tit, ur=ur)
 
