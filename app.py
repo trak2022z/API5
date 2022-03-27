@@ -54,8 +54,8 @@ json_url = "https://api.nasa.gov/planetary/apod?api_key=YR5F3thlEB7JDyxl1XVLX0Oa
 def read_json(url):
     u = urllib.request.urlopen(url)
     dane = u.read().decode() 
-       js = json.loads(dane)
-        return js
+    js = json.loads(dane)
+    return js
    
 @app.route('/apod')
 def apod():
