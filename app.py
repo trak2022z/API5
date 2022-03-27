@@ -58,8 +58,8 @@ def read_json(url):
     return js
 
 
-def html(content1, content2):  # Also allows you to set your own <head></head> etc
-   return '<html><head>custom head stuff here</head><body> <img src="' + content1 + '"><p></p>Title:' + content2 + '</body></html>'
+def html(content1, content2, content3, content4, content5, content6):  # Also allows you to set your own <head></head> etc
+   return '<html><head></head><body> <a>Date of APOD:</a> ' + content1 + ' <p></p> <a>Explanation:</a> ' + content2 + ' <p></p> <a>Title:</a> ' + content3 + ' <p></p> <img src=" ' + content4 + ' "><p></p> <a>URL:</a><a href=" ' + content5 + ' "  target="_blank">  ' + content6 + '</a></body></html>'
 
 @app.route('/apod')
 def apod():
@@ -68,7 +68,7 @@ def apod():
     expl = r["explanation"]
     tit = r["title"]
     ur = r["url"]
-    return html(ur,tit)
+    return html(dt,expl,tit,ur,ur,ur)
     #return "<p>{{ dt }}</p>"
     #return render_template("apod.html", dt=dt, expl=expl, tit=tit, ur=ur)
 
